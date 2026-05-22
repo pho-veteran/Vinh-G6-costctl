@@ -1,0 +1,9 @@
+usage: costctl terminate [-h] --id ID [--force] {ec2,rds,s3,volume}
+
+positional arguments:
+  {ec2,rds,s3,volume}
+
+options:
+  -h, --help           show this help message and exit
+  --id ID
+  --force              skip y/N confirmation

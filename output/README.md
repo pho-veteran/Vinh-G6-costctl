@@ -1,4 +1,4 @@
-# sample_output/
+# output/
 
 These files are **illustrative examples** showing the shape of `costctl`
 output. They are NOT real account data.
@@ -9,9 +9,9 @@ When you submit, replace each `*_example.txt` with a real output from running
 ## How to produce real samples
 
 ```bash
-./costctl.py list ec2 > sample_output/list_ec2_$(date +%F).txt
-./costctl.py list ec2 --missing-tag Application > sample_output/list_ec2_missing_app_$(date +%F).txt
-./costctl.py cost --tag Application=<your-app> --days 7 > sample_output/cost_<your-app>_$(date +%F).txt
+./costctl.py list ec2 > output/list_ec2_$(date +%F).txt
+./costctl.py list ec2 --missing-tag Application > output/list_ec2_missing_app_$(date +%F).txt
+./costctl.py cost --tag Application=<your-app> --days 7 > output/cost_<your-app>_$(date +%F).txt
 ```
 
 The trainer will `git clone` your repo, follow the README, and expect to

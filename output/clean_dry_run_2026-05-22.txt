@@ -1,0 +1,4 @@
+Deletion plan for Project=hexacode:
+  EC2 instances: i-02118d39d96906782
+  Volumes: -
+(dry-run — pass --apply to terminate/delete these resources)

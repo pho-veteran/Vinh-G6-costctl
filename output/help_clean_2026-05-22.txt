@@ -1,0 +1,6 @@
+usage: costctl clean [-h] --tag key=value [--apply]
+
+options:
+  -h, --help       show this help message and exit
+  --tag key=value
+  --apply          default is dry-run

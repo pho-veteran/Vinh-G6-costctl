@@ -1,0 +1,6 @@
+usage: costctl cost [-h] --tag key=value [--days DAYS]
+
+options:
+  -h, --help       show this help message and exit
+  --tag key=value  e.g. Application=HealthBot
+  --days DAYS

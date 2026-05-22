@@ -1,0 +1,6 @@
+usage: costctl idle [-h] [--threshold CPU_PERCENT] [--hours HOURS]
+
+options:
+  -h, --help            show this help message and exit
+  --threshold CPU_PERCENT
+  --hours HOURS

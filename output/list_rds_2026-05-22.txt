@@ -1,0 +1,3 @@
+RDS all — 1 found:
+------------------------------------------------------------------------------
+  hexacode-prod-db         db.r6g.large   available      Application=RDS-postgres-main, CostCenter=G6, Environment=production, ManagedBy=terraform, Name=hexacode-prod-db, Owner=hoang, Project=hexacode

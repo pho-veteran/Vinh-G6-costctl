@@ -20,7 +20,7 @@ AWS runs.
 | `tests/test_list.py`, `tests/test_terminate.py`, `tests/test_clean.py` — failing tests that define each command's behavior | Make them green |
 | Module docstrings in every `commands/*_cmd.py` — full spec, hints, AWS APIs to use | Read them carefully before coding |
 | `Makefile`, `requirements*.txt`, `.gitignore`, `LICENSE` | Untouched |
-| `sample_output/*_example.txt` | Replace with REAL outputs once your impl works |
+| `output/*_example.txt` | Replace with REAL outputs once your impl works |
 
 **Initial state of `make test`:** 10 passed (helpers), 15 failed (commands).
 You're done when all 25 pass.
@@ -174,7 +174,7 @@ Vinh-G6-costctl/
 │   ├── test_list.py          # 7 tests — implement list_cmd to green these
 │   ├── test_terminate.py     # 4 tests
 │   └── test_clean.py         # 4 tests (stretch)
-├── sample_output/            # example outputs — replace with yours
+├── output/                   # example outputs — replace with yours
 ├── Makefile
 ├── requirements.txt
 ├── requirements-dev.txt
@@ -276,7 +276,7 @@ Add a `REFLECTIONS.md` to your repo. Sample prompts:
 - [x] Keep `costctl.py` unchanged and implement command logic in `commands/*_cmd.py`
 - [x] Make `pytest -v tests/` reach `25/25` passing tests
 - [x] Implement `list`, `terminate`, `clean`, and `tag`
-- [ ] Replace `sample_output/*_example.txt` only with real AWS output if safe credentials and disposable resources are available
+- [ ] Replace `output/*_example.txt` only with real AWS output if safe credentials and disposable resources are available
 - [ ] Add `REFLECTIONS.md` with 2+ answers if submitting the full assignment package
 - [ ] Create meaningful commits for each milestone if you want a clean submission history
 

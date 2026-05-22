@@ -16,8 +16,8 @@ help:
 	./costctl.py --help
 
 sample-ec2:
-	./costctl.py list ec2 > sample_output/list_ec2_$$(date +%F).txt
-	@echo "Wrote sample_output/list_ec2_$$(date +%F).txt"
+	./costctl.py list ec2 > output/list_ec2_$$(date +%F).txt
+	@echo "Wrote output/list_ec2_$$(date +%F).txt"
 
 clean:
 	find . -name __pycache__ -prune -exec rm -rf {} +

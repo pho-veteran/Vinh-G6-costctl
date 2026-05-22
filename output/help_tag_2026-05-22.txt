@@ -1,0 +1,10 @@
+usage: costctl tag [-h] --id ID --set key=value {ec2,rds,s3,volume}
+
+positional arguments:
+  {ec2,rds,s3,volume}
+
+options:
+  -h, --help           show this help message and exit
+  --id ID
+  --set key=value      repeatable: --set Owner=alice --set
+                       Application=HealthBot

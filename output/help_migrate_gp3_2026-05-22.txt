@@ -1,0 +1,7 @@
+usage: costctl migrate-gp3 [-h] [--apply] [--volume-id VOLUME_ID]
+
+options:
+  -h, --help            show this help message and exit
+  --apply               default is dry-run
+  --volume-id VOLUME_ID
+                        restrict apply to this volume

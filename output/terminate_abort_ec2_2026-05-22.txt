@@ -1,0 +1,1 @@
+Terminate EC2 i-02118d39d96906782? [y/N] Aborted.

@@ -1,0 +1,7 @@
+S3 all — 5 found:
+------------------------------------------------------------------------------
+  hexacode-prod-frontend   bucket         active         Application=S3-frontend, CostCenter=G6, Environment=production, Owner=hoang
+  hexacode-prod-problem-assets bucket         active         Application=S3-problem-assets, CostCenter=G6, Environment=production, Owner=hoang
+  hexacode-prod-submission-artifacts bucket         active         Application=S3-submission-artifacts, CostCenter=G6, Environment=production, Owner=hoang
+  hexacode-prod-terraform-state-583909632851-us-west-2 bucket         active         Application=S3-terraform-state, CostCenter=G6, Environment=production, Owner=hoang
+  myproduct-kb-583909632851 bucket         active         aws:cloudformation:logical-id=S3Bucket, aws:cloudformation:stack-id=arn:aws:cloudformation:us-west-2:583909632851:stack/rag-w-bedrock-kb/92a26320-5379-11f1-86ed-02a401f19311, aws:cloudformation:stack-name=rag-w-bedrock-kb

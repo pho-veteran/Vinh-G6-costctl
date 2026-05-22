@@ -1,0 +1,10 @@
+usage: costctl list [-h] [--tag key=value] [--missing-tag key]
+                    {ec2,rds,s3,volume}
+
+positional arguments:
+  {ec2,rds,s3,volume}
+
+options:
+  -h, --help           show this help message and exit
+  --tag key=value      filter resources matching this tag (repeatable)
+  --missing-tag key    filter resources missing this tag key (repeatable)

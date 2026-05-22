@@ -1,0 +1,17 @@
+usage: costctl [-h] [--region REGION] <command> ...
+
+Manage AWS cost-related resources (XBrain W6 side challenge).
+
+positional arguments:
+  <command>
+    list           list resources, filter by tag / missing-tag
+    cost           show cost of resources matching tag
+    terminate      terminate/delete one resource (asks confirmation)
+    tag            add/update tags on one resource
+    clean          (stretch) bulk terminate resources by tag
+    idle           (stretch) find idle EC2 by CPU avg
+    migrate-gp3    (stretch) gp2 → gp3 EBS migration
+
+options:
+  -h, --help       show this help message and exit
+  --region REGION  AWS region (default: $AWS_REGION or us-east-1)
