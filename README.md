@@ -1,13 +1,12 @@
-# costctl — XBrain W6 side challenge starter
+# costctl — Vinh-G6 implementation
 
-A starter scaffold for a small AWS-resource-management CLI. **The CLI structure
-is built; you implement the command logic.** Fork this repo, fill in the
-stubs, make the tests pass, customize for your group, then submit.
+This Vinh-G6 fork contains the implemented AWS resource-management CLI for the
+W6 side challenge. The command logic for `list`, `terminate`, `clean`, and
+`tag` is filled in here, and sample outputs should only be replaced with real
+AWS runs.
 
-> **Side challenge is OPTIONAL and does NOT count toward W6 score or bonus cap.**
-> Recognition is separate (Slack callout / Phase 2 selection / portfolio).
-> See `outputs/W6/W6_downtime_exercises.md` in the XBrain program repo for
-> the full brief.
+> This repository keeps the original assignment brief below, with the
+> submission-facing sections updated for Vinh-G6.
 
 ---
 
@@ -26,13 +25,15 @@ stubs, make the tests pass, customize for your group, then submit.
 **Initial state of `make test`:** 10 passed (helpers), 15 failed (commands).
 You're done when all 25 pass.
 
+**Final target for this Vinh-G6 implementation:** `25/25` passing tests.
+
 ---
 
 ## Quickstart (5 minutes)
 
 ```bash
 # 1. Fork / clone
-git clone <your-fork-url> g<N>-costctl && cd g<N>-costctl
+git clone <your-fork-url> Vinh-G6-costctl && cd Vinh-G6-costctl
 
 # 2. Install
 make install-dev                   # or: pip install -r requirements-dev.txt
@@ -156,7 +157,7 @@ For tests:
 ## Project structure
 
 ```
-costctl-starter/
+Vinh-G6-costctl/
 ├── costctl.py                # argparse entrypoint (provided)
 ├── commands/
 │   ├── _common.py            # helpers — IMPLEMENTED, leave alone
@@ -269,25 +270,17 @@ Add a `REFLECTIONS.md` to your repo. Sample prompts:
 
 ---
 
-## Submission checklist (W6 side challenge)
+## Submission checklist (Vinh-G6)
 
-- [ ] Fork → rename to `g<N>-costctl` → clone locally
-- [ ] `make install-dev && make test` shows 10 passed at start
-- [ ] Implement `list` → `pytest tests/test_list.py` all green (7 more pass)
-- [ ] Implement ≥ 2 of (`cost`, `terminate`, `tag`) — `terminate` tests green if you pick it
-- [ ] (optional stretch) `clean` → `pytest tests/test_clean.py` green; or `idle` / `migrate-gp3`
-- [ ] `make test` final score reported in README (e.g. "21/25 passing")
-- [ ] Replace `sample_output/*_example.txt` with real outputs from your account
-- [ ] `REFLECTIONS.md` with 2+ answers
-- [ ] At least 3 meaningful commits (init → first command working → final polish)
-- [ ] Replace `g<N>` placeholders throughout README with your real group number
-- [ ] Add Team section with member names
-- [ ] Tag: `git tag w6-sidechallenge-v1 && git push --tags`
-- [ ] Post link in Slack `#w6-sidechallenge` thread:
-      `G<N> — <repo-url> — implemented: list, cost, terminate (21/25 tests passing)`
+- [x] Clone and work in `Vinh-G6-costctl`
+- [x] Keep `costctl.py` unchanged and implement command logic in `commands/*_cmd.py`
+- [x] Make `pytest -v tests/` reach `25/25` passing tests
+- [x] Implement `list`, `terminate`, `clean`, and `tag`
+- [ ] Replace `sample_output/*_example.txt` only with real AWS output if safe credentials and disposable resources are available
+- [ ] Add `REFLECTIONS.md` with 2+ answers if submitting the full assignment package
+- [ ] Create meaningful commits for each milestone if you want a clean submission history
 
-Reminder: **OPTIONAL and does NOT count toward W6 score.** Recognition is
-separate (Slack callout / Phase 2 selection / portfolio).
+Reminder: keep sample output honest and do not fabricate AWS command output.
 
 ---
 
@@ -297,15 +290,11 @@ MIT — see `LICENSE`.
 
 ---
 
-## Team
+## Name
 
-> Replace before submission:
-
-- <name 1>
-- <name 2>
-- <name 3>
+- Vinh
 
 ---
 
-*Starter scaffold from the XBrain W6 side challenge —
+*Based on the XBrain W6 side challenge starter scaffold from
 `outputs/W6/costctl-starter/` in the program repo.*
