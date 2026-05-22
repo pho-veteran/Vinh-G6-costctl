@@ -1,0 +1,7 @@
+Scanning running EC2 (excluding keep=true) - threshold 5.0% over 24h:
+------------------------------------------------------------------------------
+  i-02118d39d96906782   t3.micro     cpu_24h= 0.62%  <- IDLE
+------------------------------------------------------------------------------
+
+Idle: 1 instance(s): ['i-02118d39d96906782']
+Tip: combo with terminate ->  ./costctl.py terminate ec2 --id <id>
