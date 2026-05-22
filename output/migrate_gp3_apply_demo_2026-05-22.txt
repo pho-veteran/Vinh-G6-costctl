@@ -1,0 +1,4 @@
+modify_volume issued for vol-0444b69a6c439816b (gp3, 3000 IOPS, 125 MiB/s)
+
+Volume(s) entering 'modifying' -> 'optimizing' state. App stays online.
+Use `costctl list volume` after ~30 minutes to confirm 'in-use' + gp3.

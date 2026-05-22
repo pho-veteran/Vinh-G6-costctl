@@ -1,10 +1,6 @@
-Traceback (most recent call last):
-  File "C:\Users\thanh\Desktop\workspace\xbrain-courses\Vinh-G6-costctl\costctl.py", line 107, in <module>
-    main()
-    ~~~~^^
-  File "C:\Users\thanh\Desktop\workspace\xbrain-courses\Vinh-G6-costctl\costctl.py", line 100, in main
-    module.run(args)
-    ~~~~~~~~~~^^^^^^
-  File "C:\Users\thanh\Desktop\workspace\xbrain-courses\Vinh-G6-costctl\commands\migrate_gp3_cmd.py", line 82, in run
-    raise NotImplementedError("TODO: implement migrate-gp3 — see module docstring")
-NotImplementedError: TODO: implement migrate-gp3 — see module docstring
+gp2 volumes (price delta $0.020/GB-month):
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+Total savings: $0.00/mo
+
+(dry-run � pass --apply --volume-id <id> to migrate one, or --apply to migrate ALL)

@@ -72,6 +72,88 @@ GP2_PRICE = 0.10
 GP3_PRICE = 0.08
 
 
+def _list_gp2_volumes():
+    ec2 = boto3.client("ec2")
+    volumes = []
+    paginator = ec2.get_paginator("describe_volumes")
+
+    for page in paginator.paginate(Filters=[{"Name": "volume-type", "Values": ["gp2"]}]):
+        for volume in page.get("Volumes", []):
+            attachment = volume.get("Attachments", [])
+            attached = attachment[0].get("InstanceId") if attachment else "(none)"
+            savings = volume.get("Size", 0) * (GP2_PRICE - GP3_PRICE)
+            volumes.append({
+                "id": volume["VolumeId"],
+                "size_gb": volume.get("Size", 0),
+                "attached": attached,
+                "monthly_savings": savings,
+            })
+
+    return volumes
+
+
+def _print_dry_run(volumes):
+    print("gp2 volumes (price delta $0.020/GB-month):")
+    print("-" * 78)
+    total_savings = 0.0
+    for volume in volumes:
+        total_savings += volume["monthly_savings"]
+        print(
+            f"  {volume['id']:<24} {volume['size_gb']:>5}GB  "
+            f"attached={volume['attached']:<18} ${volume['monthly_savings']:.2f}/mo savings"
+        )
+    print("-" * 78)
+    print(f"Total savings: ${total_savings:.2f}/mo")
+    print()
+    print("(dry-run — pass --apply --volume-id <id> to migrate one, or --apply to migrate ALL)")
+
+
+def _find_volume(volume_id):
+    ec2 = boto3.client("ec2")
+    paginator = ec2.get_paginator("describe_volumes")
+
+    for page in paginator.paginate():
+        for volume in page.get("Volumes", []):
+            if volume["VolumeId"] == volume_id:
+                return volume
+
+    return None
+
+
+def _apply_migration(volume_ids):
+    ec2 = boto3.client("ec2")
+
+    if not volume_ids:
+        volume_ids = [volume["id"] for volume in _list_gp2_volumes()]
+        if not volume_ids:
+            print("Nothing to migrate.")
+            return
+
+    migrated = 0
+    for volume_id in volume_ids:
+        volume = _find_volume(volume_id)
+        if not volume:
+            print(f"Volume {volume_id} not found.")
+            continue
+        if volume.get("VolumeType") != "gp2":
+            print(f"Volume {volume_id} is not gp2; skipping.")
+            continue
+
+        ec2.modify_volume(
+            VolumeId=volume_id,
+            VolumeType="gp3",
+            Iops=3000,
+            Throughput=125,
+        )
+        migrated += 1
+        print(f"modify_volume issued for {volume_id} (gp3, 3000 IOPS, 125 MiB/s)")
+
+    if migrated:
+        print()
+        print("Volume(s) entering 'modifying' -> 'optimizing' state. App stays online.")
+        print("Use `costctl list volume` after ~30 minutes to confirm 'in-use' + gp3.")
+
+
 def run(args):
     """Entry point.
 
@@ -79,4 +161,9 @@ def run(args):
         args.apply       — bool, default False (dry-run)
         args.volume_id   — optional str, only migrate this volume when --apply
     """
-    raise NotImplementedError("TODO: implement migrate-gp3 — see module docstring")
+    if args.apply:
+        volume_ids = [args.volume_id] if args.volume_id else []
+        _apply_migration(volume_ids)
+        return
+
+    _print_dry_run(_list_gp2_volumes())

@@ -20,13 +20,17 @@ Track the next feature work based on the current real CLI outputs in `output/`.
   - verify with a real read-only run such as `./costctl.py idle --threshold 5 --hours 24`
   - capture a truthful idle scan output
 
-### feat: implement `migrate-gp3` dry-run
-- Evidence: `output/migrate_gp3_current_behavior_2026-05-22.txt`
-- Current behavior: raises `NotImplementedError: TODO: implement migrate-gp3 — see module docstring`
-- Next goal:
-  - implement `commands/migrate_gp3_cmd.py`
-  - verify dry-run only first with `./costctl.py migrate-gp3`
-  - do not use `--apply` during read-only verification
+### feat: implement `migrate-gp3`
+- Evidence:
+  - `output/migrate_gp3_current_behavior_2026-05-22.txt`
+  - `output/migrate_gp3_apply_demo_2026-05-22.txt`
+- Current behavior:
+  - dry-run works and prints a truthful savings report
+  - `--apply --volume-id` successfully issues `modify_volume` for gp2 -> gp3
+  - live verification in `us-west-2` completed with a disposable 1 GiB demo volume, then the demo volume was deleted
+- Follow-up:
+  - optional: verify bulk `--apply` behavior on multiple disposable gp2 volumes if more live evidence is desired
+  - optional: keep output/help text ASCII-safe anywhere Windows `cp1252` console output is still exposed
 
 ## Behavior issue to fix
 
