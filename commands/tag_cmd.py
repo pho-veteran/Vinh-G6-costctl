@@ -43,29 +43,42 @@ USEFUL COMBO
       --set Application=HealthBot
 """
 import boto3
+from botocore.exceptions import ClientError
 
-from commands._common import parse_kv
+from commands._common import parse_kv, tags_to_dict
 
 
 def _to_tags(set_args):
     """Convert ['k1=v1', 'k2=v2'] to [{'Key':'k1','Value':'v1'}, ...]."""
-    raise NotImplementedError("TODO: implement _to_tags using parse_kv")
+    return [{"Key": key, "Value": value} for key, value in (parse_kv(item) for item in set_args)]
 
 
 def _tag_ec2(rid, tags):
-    raise NotImplementedError("TODO: implement _tag_ec2 using create_tags")
+    boto3.client("ec2").create_tags(Resources=[rid], Tags=tags)
 
 
 def _tag_rds(rid, tags):
-    raise NotImplementedError("TODO: implement _tag_rds — remember to fetch ARN first")
+    rds = boto3.client("rds")
+    db = rds.describe_db_instances(DBInstanceIdentifier=rid)["DBInstances"][0]
+    rds.add_tags_to_resource(ResourceName=db["DBInstanceArn"], Tags=tags)
 
 
 def _tag_s3(rid, tags):
-    raise NotImplementedError("TODO: implement _tag_s3 — MERGE with existing tags, don't replace")
+    s3 = boto3.client("s3")
+    try:
+        existing = tags_to_dict(s3.get_bucket_tagging(Bucket=rid).get("TagSet", []))
+    except ClientError:
+        existing = {}
+
+    for tag in tags:
+        existing[tag["Key"]] = tag["Value"]
+
+    tag_set = [{"Key": key, "Value": value} for key, value in sorted(existing.items())]
+    s3.put_bucket_tagging(Bucket=rid, Tagging={"TagSet": tag_set})
 
 
 def _tag_volume(rid, tags):
-    raise NotImplementedError("TODO: implement _tag_volume using create_tags")
+    boto3.client("ec2").create_tags(Resources=[rid], Tags=tags)
 
 
 DISPATCH = {
@@ -84,4 +97,7 @@ def run(args):
         args.id    — resource identifier
         args.set   — list[str], each "key=value"
     """
-    raise NotImplementedError("TODO: implement run() — see module docstring")
+    tags = _to_tags(args.set)
+    DISPATCH[args.type](args.id, tags)
+    summary = ", ".join(f"{tag['Key']}={tag['Value']}" for tag in tags)
+    print(f"Applied {len(tags)} tag(s) to {args.type} {args.id}: {summary}")
